@@ -1,5 +1,15 @@
 'use client';
-import { Box, Button, Container, Flex, Heading, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Text,
+} from '@chakra-ui/react';
 
 export default function Home() {
   return (
@@ -11,7 +21,26 @@ export default function Home() {
         borderRadius="15px"
         borderEndEndRadius="50px"
       >
-        <Box>a</Box>
+        <Box>
+          <form>
+            <Flex gap="20px" mr="50px">
+              <FormControl>
+                <FormLabel>DAY</FormLabel>
+                <Input placeholder="DD" />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>MONTH</FormLabel>
+                <Input placeholder="MM" />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>YEAR</FormLabel>
+                <Input placeholder="YYYY" />
+              </FormControl>
+            </Flex>
+          </form>
+        </Box>
 
         {/* DIVIDER */}
         <Box>
