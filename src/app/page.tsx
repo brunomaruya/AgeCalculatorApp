@@ -1,10 +1,22 @@
 'use client';
-import { Heading } from '@chakra-ui/react';
+import { Box, Container, Heading } from '@chakra-ui/react';
 
 export default function Home() {
   return (
     <>
-      <Heading color="primary.purple">test</Heading>
+      <Container
+        bg="neutral.offWhite"
+        marginY="auto"
+        p="20px"
+        borderRadius="15px"
+        borderEndEndRadius="50px"
+      >
+        <Box>a</Box>
+
+        <Box></Box>
+
+        <Box></Box>
+      </Container>
     </>
   );
 }

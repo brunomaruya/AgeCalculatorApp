@@ -1,5 +1,5 @@
 'use client';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { ChakraProvider, Container, extendTheme } from '@chakra-ui/react';
 import { m } from 'framer-motion';
 
 export const metadata = {
@@ -30,8 +30,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <ChakraProvider theme={theme}>{children}</ChakraProvider>
+      <body style={{ background: 'hsl(0, 0%, 86%)' }}>
+        <ChakraProvider theme={theme}>
+          <Container height="100vh" display="flex" alignContent="center">
+            {children}
+          </Container>
+        </ChakraProvider>
       </body>
     </html>
   );
