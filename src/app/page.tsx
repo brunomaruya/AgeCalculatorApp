@@ -1,14 +1,5 @@
 'use client';
-import {
-  Box,
-  Button,
-  Container,
-  Divider,
-  Flex,
-  Heading,
-  Text,
-} from '@chakra-ui/react';
-import arrow from '../assets/images/icon-arrow.svg';
+import { Box, Button, Container, Flex, Heading, Text } from '@chakra-ui/react';
 
 export default function Home() {
   return (
