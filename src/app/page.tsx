@@ -1,5 +1,13 @@
 'use client';
-import { Box, Button, Container, Flex, Heading } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  Flex,
+  Heading,
+  Text,
+} from '@chakra-ui/react';
 import arrow from '../assets/images/icon-arrow.svg';
 
 export default function Home() {
@@ -40,7 +48,26 @@ export default function Home() {
           </Flex>
         </Box>
 
-        <Box></Box>
+        <Box>
+          <Heading fontSize="5xl">
+            <Text color="primary.purple" display="inline">
+              --
+            </Text>
+            years
+          </Heading>
+          <Heading fontSize="5xl">
+            <Text color="primary.purple" display="inline">
+              --
+            </Text>
+            months
+          </Heading>
+          <Heading fontSize="5xl">
+            <Text color="primary.purple" display="inline">
+              --
+            </Text>
+            days
+          </Heading>
+        </Box>
       </Container>
     </>
   );
