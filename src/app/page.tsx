@@ -10,8 +10,14 @@ import {
   Input,
   Text,
 } from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
 
 export default function Home() {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
   return (
     <>
       <Container
@@ -26,17 +32,17 @@ export default function Home() {
             <Flex gap="20px" mr="50px">
               <FormControl>
                 <FormLabel>DAY</FormLabel>
-                <Input placeholder="DD" />
+                <Input placeholder="DD" {...register('day')} />
               </FormControl>
 
               <FormControl>
                 <FormLabel>MONTH</FormLabel>
-                <Input placeholder="MM" />
+                <Input placeholder="MM" {...register('month')} />
               </FormControl>
 
               <FormControl>
                 <FormLabel>YEAR</FormLabel>
-                <Input placeholder="YYYY" />
+                <Input placeholder="YYYY" {...register('year')} />
               </FormControl>
             </Flex>
           </form>
