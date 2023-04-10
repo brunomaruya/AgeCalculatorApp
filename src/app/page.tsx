@@ -21,9 +21,15 @@ const schema = yup.object().shape({
   year: yup.number().integer().positive().required(),
 });
 
+interface IResultDate {
+  years: number;
+  months: number;
+  days: number;
+}
+
 export default function Home() {
-  const [currentDate, setCurrentDate] = useState<Number>();
-  const [inputDate, setInputDate] = useState<Number>();
+  const [resultDate, setResultDate] = useState<IResultDate>();
+  const [currDate, setCurrDate] = useState();
 
   const calculateAge = (currDate, inputDate) => {
     const diff = currDate - inputDate;
@@ -44,9 +50,10 @@ export default function Home() {
     const result = calculateAge(currDate, inputDate);
 
     const years = Math.floor(result / (1000 * 3600 * 24) / 365);
-    const months = Math.floor((result / (1000 * 3600 * 24)) % 12);
-    const days = Math.floor((months / (1000 * 3600 * 24)) % 31);
-    return { years: years, months: months, days: days };
+    const months = Math.floor(((result / (1000 * 3600 * 24)) % 365) / 31);
+    const days = Math.round(((result / (1000 * 3600 * 24)) % 365) % 31);
+    console.log(`years: ${years} months: ${months} days: ${days}`);
+    setResultDate({ years: years, months: months, days: days });
   };
 
   return (
@@ -112,21 +119,21 @@ export default function Home() {
         <Box>
           <Heading fontSize="5xl">
             <Text color="primary.purple" display="inline">
-              --
+              {resultDate ? resultDate.years : '--'}
             </Text>
-            years
+            &nbsp;years
           </Heading>
           <Heading fontSize="5xl">
             <Text color="primary.purple" display="inline">
-              --
+              {resultDate ? resultDate.months : '--'}
             </Text>
-            months
+            &nbsp;months
           </Heading>
           <Heading fontSize="5xl">
             <Text color="primary.purple" display="inline">
-              --
+              {resultDate ? resultDate.days : '--'}
             </Text>
-            days
+            &nbsp;days
           </Heading>
         </Box>
       </Container>
