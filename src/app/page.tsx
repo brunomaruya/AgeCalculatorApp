@@ -18,6 +18,7 @@ export default function Home() {
     register,
     formState: { errors },
   } = useForm();
+
   return (
     <>
       <Container
@@ -32,17 +33,17 @@ export default function Home() {
             <Flex gap="20px" mr="50px">
               <FormControl>
                 <FormLabel>DAY</FormLabel>
-                <Input placeholder="DD" {...register('day')} />
+                <Input placeholder="DD" />
               </FormControl>
 
               <FormControl>
                 <FormLabel>MONTH</FormLabel>
-                <Input placeholder="MM" {...register('month')} />
+                <Input placeholder="MM" />
               </FormControl>
 
               <FormControl>
                 <FormLabel>YEAR</FormLabel>
-                <Input placeholder="YYYY" {...register('year')} />
+                <Input placeholder="YYYY" />
               </FormControl>
             </Flex>
           </form>
@@ -66,7 +67,7 @@ export default function Home() {
                 height="20"
                 viewBox="0 0 46 44"
               >
-                <g fill="none" stroke="#FFF" stroke-width="2">
+                <g fill="none" stroke="#FFF" strokeWidth="2">
                   <path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44" />
                 </g>
               </svg>
