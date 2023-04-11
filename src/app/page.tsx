@@ -13,7 +13,7 @@ import {
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const schema = yup.object().shape({
   day: yup.number().integer().positive().required(),
@@ -44,17 +44,30 @@ export default function Home() {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = useCallback((data) => {
     const currDate = new Date();
     const inputDate = new Date(data.year, data.month, data.day);
     const result = calculateAge(currDate, inputDate);
+    console.log('-----');
+    console.log(currDate);
+    console.log(inputDate);
 
-    const years = Math.floor(result / (1000 * 3600 * 24) / 365);
-    const months = Math.floor(((result / (1000 * 3600 * 24)) % 365) / 31);
-    const days = Math.round(((result / (1000 * 3600 * 24)) % 365) % 31);
+    const numberOfDays = result / (1000 * 3600 * 24);
+
+    const years = Math.floor(numberOfDays / 365);
+    const months = Math.floor((numberOfDays % 365) / 31);
+    const days = Math.floor((numberOfDays % 365) % 31);
+
     console.log(`years: ${years} months: ${months} days: ${days}`);
     setResultDate({ years: years, months: months, days: days });
-  };
+  }, []);
+
+  useEffect(() => {
+    const newD = new Date();
+    setCurrDate(newD);
+    console.log('useEffect');
+    console.log(currDate);
+  }, [onSubmit]);
 
   return (
     <>
@@ -70,19 +83,31 @@ export default function Home() {
             <Flex gap="20px" mr="50px">
               <FormControl>
                 <FormLabel>DAY</FormLabel>
-                <Input placeholder="DD" {...register('day')} />
+                <Input
+                  placeholder="DD"
+                  {...register('day')}
+                  defaultValue="04"
+                />
                 {errors.day && <p>{errors.day?.message?.toString()}</p>}
               </FormControl>
 
               <FormControl>
                 <FormLabel>MONTH</FormLabel>
-                <Input placeholder="MM" {...register('month')} />
+                <Input
+                  placeholder="MM"
+                  {...register('month')}
+                  defaultValue="09"
+                />
                 {errors.day && <p>{errors.month?.message?.toString()}</p>}
               </FormControl>
 
               <FormControl>
                 <FormLabel>YEAR</FormLabel>
-                <Input placeholder="YYYY" {...register('year')} />
+                <Input
+                  placeholder="YYYY"
+                  {...register('year')}
+                  defaultValue="2002"
+                />
                 {errors.day && <p>{errors.year?.message?.toString()}</p>}
               </FormControl>
             </Flex>
